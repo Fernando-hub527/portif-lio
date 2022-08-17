@@ -8,7 +8,7 @@ FUncionalidades:
     . Permitir a troca de mensagem entre dois usuários
     
 
-#Routs
+Rotas
     login: 
         method: GET
         url: /api/chat/login
