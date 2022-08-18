@@ -28,7 +28,6 @@ describe("Seção", () => {
         .get("/api/chat/login")
         .send(userAuth)
 
-        console.log(process.env.SECRET_KEY)
         expect(response.status).toBe(201)
         expect(response.body).toEqual(gerarToken({}, process.env.SECRET_KEY!))
     })
