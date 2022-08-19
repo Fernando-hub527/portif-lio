@@ -1,7 +1,7 @@
 import { TokenJwtDTO } from "../dto/TokenJwtDTO";
 import { UserLoginDTO } from "../dto/userLoginDTO";
-import { IRepositoryUser } from "../repository/IRepositoryUser";
-import { RepositoryUser } from "../repository/RepositoryUser";
+import { IRepositoryUser } from "../database/repository/IRepositoryUser";
+import { RepositoryUser } from "../database/repository/RepositoryUser";
 import { gerarToken } from "../utils/token";
 import { IServiceUser } from "./IServiceUser";
 

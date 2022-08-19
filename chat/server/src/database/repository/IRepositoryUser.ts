@@ -1,4 +1,4 @@
-import { UserDTO } from "../dto/userDTO";
+import { UserDTO } from "../../dto/userDTO";
 
 export interface IRepositoryUser{
     foundUserByName(nameUser: String): Promise<UserDTO>
