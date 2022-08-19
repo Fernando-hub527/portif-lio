@@ -1,4 +1,4 @@
-import express, { Application } from 'express'
+import express, { Application, json } from 'express'
 import cors from 'cors'
 import routs from '../routs/indexRouts'
 
@@ -21,6 +21,7 @@ function setMiddleares (app: Application) {
       next()
     })
     app.use(cors())
+    app.use(json())
     app.use(routs)
     return app
 }
