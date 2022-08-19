@@ -12,12 +12,10 @@ export class ControllerUser{
     }
 
     login(req: Request, res: Response){
-        this.serviceUser.validarUsuario({}, new UserLoginDTO(req.body.user, req.body.password), process.env.SECRET_KEY!).then((response) => {
-            if(response){
-                res.status(404).send({error:"Colaborador não encontrado"})
-            }else{
-                res.status(200).send({token: response})
-            }
+        this.serviceUser.validarUsuario({}, new UserLoginDTO(req.body.user, req.body.password), process.env.SECRET_KEY!).then((token) => {
+            res.status(201).send(token)
+        }).catch((error) => {
+            res.status(401).send({error:error})
         })
 
     }

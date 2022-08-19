@@ -19,8 +19,8 @@ describe("Seção", () => {
             .get("/api/chat/login")
             .send(userAuth)
 
-        expect(response.status).toBe(404)
-        expect(response.body).toEqual({error: "colaborador não encontrado"})
+        expect(response.status).toBe(401)
+        expect(response.body).toEqual({error: "Falha de autenticação, usuário ou senha inválida"})
     })
 
     it("Se colaborador enviado for encontrado, 201 com token de acesso é retornado", async () => {

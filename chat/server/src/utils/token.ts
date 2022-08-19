@@ -1,9 +1,10 @@
 import jwt from "jsonwebtoken"
+import { TokenJwtDTO } from "../dto/TokenJwtDTO"
 
 export function gerarToken (payload: Object, secret: String) {
   const key = Buffer.from(secret, 'base64')
   const token = jwt.sign(payload, key)
-  return `Bearer ${token}`
+  return new TokenJwtDTO(`Bearer ${token}`)
 }
 
 export function verificarTorken(token: String | undefined, key: Buffer){
