@@ -1,7 +1,7 @@
 import mongoose from '../../../infra/configConnection'
 
 const userSchema = new mongoose.Schema({
-    nameUser: {
+    name: {
       type: String,
       require: true,
       unique: true
@@ -12,5 +12,5 @@ const userSchema = new mongoose.Schema({
     }
   })
   
-  export default mongoose.model('user', userSchema)
+  export default mongoose.model('users', userSchema)
   
