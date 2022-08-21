@@ -38,7 +38,55 @@ describe("Seção", () => {
         expect(response.body).toEqual(gerarToken({}, process.env.SECRET_KEY!))
     })
 
-    it("Se parâmetros enviados forem inválidos, 401 é retornado", () => {
-        
+    it("Se parâmetros enviados forem inválidos, 401 é retornado", async () => {
+        await entityUser.create(new UserDTO("User teste", "SenhaTeste"))
+
+        let response = await request(app)
+        .get("/api/chat/login")
+        .send({nomeUser: "User teste"})
+
+        expect(response.status).toBe(401)//400
+        expect(response.body).toEqual({error: "Falha de autenticação, usuário ou senha inválida"})
     })
+})
+
+describe("Creation of users", () => {
+    beforeEach(async () => {
+        await entityUser.deleteMany({})
+    })
+
+    it("If user already registred, then 409 status is returned", async () => {
+        let userRegistred = new UserDTO("user teste", "password test")
+        await entityUser.create(userRegistred)
+    
+        let response = await request(app)
+            .post("/api/chat/register")
+            .send(userRegistred)
+
+        expect(response.status).toBe(409)
+        expect(response.body).toStrictEqual({error: "User already registred"})
+    })
+
+    it("if Invalid password is sented then 400 status is returned", async () => {
+        let userRegistred = new UserDTO("user teste", "passw")
+    
+        let response = await request(app)
+            .post("/api/chat/register")
+            .send(userRegistred)
+
+        expect(response.status).toBe(400)
+        expect(response.body).toBe({error: "Password sented not is valid"})
+    })
+
+    it("User created with sucess", async () => {
+        let userRegistred = new UserDTO("user teste", "passwords test")
+    
+        let response = await request(app)
+            .post("/api/chat/register")
+            .send(userRegistred)
+
+        expect(response.status).toBe(400)
+        expect(response.body).toBe({error: "Password sented not is valid"})
+    })
+
 })
