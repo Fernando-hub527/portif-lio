@@ -1,11 +1,11 @@
 import { IError } from "./IError";
 
-export class InvalidCredentials implements IError{
-    statusCode = 401;
+export class InvalidParams implements IError{
+    statusCode = 400;
     msgError: String;
 
-    constructor(){
-        this.msgError = `Invalid user credentials`
+    constructor(rasonError: String){
+        this.msgError = `invalid params, ${rasonError}`
     }
 
     getError(): String {

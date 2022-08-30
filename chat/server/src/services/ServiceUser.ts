@@ -13,19 +13,15 @@ export class ServiceUser implements IServiceUser{
     constructor(repository ?: IRepositoryUser){
         this.repository = repository || new RepositoryUser()
     }
-    generateToken(payload: Object, secretKey: String): Promise<Result<TokenJwtDTO>> {
-        throw new Error("Method not implemented.");
-    }
-
 
     async registerUser(user: UserDTO): Promise<Result<UserDTO>> {
         return await this.repository.createUser(user)
     }
 
 
-    async validarUsuario(user: UserLoginDTO): Promise<Result<UserDTO>> {
-        let userOrError = await this.repository.foundUserByName(user.nomeUser)
-        if(!userOrError.isSucess) return userOrError 
+    async validarUser(user: UserLoginDTO): Promise<Result<UserDTO>> {
+        let userOrError = await this.repository.foundUserByName(user.name)
+        if(!userOrError.isSucess) return Result.fail(new InvalidCredentials()) 
         if(this.validaPassword(user.password, userOrError.getValue().password)){
             return userOrError
         }else{

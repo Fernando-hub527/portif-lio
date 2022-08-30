@@ -9,9 +9,9 @@ export class RegisterNotFound implements IError{
     }
 
     getError(): String {
-        throw new Error("Method not implemented.");
+        return this.msgError
     }
-    getStatus(): Number{
+    getStatus(): number{
         return this.statusCode
     }
 

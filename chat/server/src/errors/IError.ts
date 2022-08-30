@@ -1,7 +1,7 @@
 export interface IError{
-    statusCode: Number
+    statusCode: number
     msgError: String
     
     getError(): String
-    getStatus(): Number
+    getStatus(): number
 }

@@ -1,7 +1,7 @@
 import { IError } from "./IError";
 
 export class RegisterAlreadyRegistered implements IError{
-    statusCode = 400;
+    statusCode = 409;
     msgError: String;
 
     constructor(idRegistro: String, name: String){
@@ -9,10 +9,10 @@ export class RegisterAlreadyRegistered implements IError{
     }
 
     getError(): String {
-        throw new Error("Method not implemented.");
+        return this.msgError
     }
-    getStatus(): Number {
-        throw new Error("Method not implemented.");
+    getStatus(): number {
+        return this.statusCode
     }
 
 }

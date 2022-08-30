@@ -4,7 +4,6 @@ import { UserLoginDTO } from "../dto/userLoginDTO";
 import { Result } from "../utils/Result";
 
 export interface IServiceUser{
-    validarUsuario(user: UserLoginDTO): Promise<Result<UserDTO>>
-    generateToken(payload: Object, secretKey: String): Promise<Result<TokenJwtDTO>>
+    validarUser(user: UserLoginDTO): Promise<Result<UserDTO>>
     registerUser(user: UserDTO): Promise<Result<UserDTO>>
 }
