@@ -1,9 +1,7 @@
 import { Request, Response } from "express";
-import { UserLoginDTO } from "../dto/userLoginDTO";
 import { IServiceUser } from "../services/IServiceUser";
 import { ServiceUser } from "../services/ServiceUser";
 import dotenv from 'dotenv'
-import { UserDTO } from "../dto/userDTO";
 import { gerarToken } from "../utils/token";
 import { factoryUserByCadastro, factoryUserByLogin } from "../factorys/factoryUser";
 import { IError } from "../errors/IError";
